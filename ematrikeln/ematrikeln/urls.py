@@ -11,8 +11,8 @@ urlpatterns = [
         # url(r'^blog/', include('blog.urls')),
 
         url(r'^admin/', include(admin.site.urls)),
-        url(r'^add', views.add),
         url(r'^add_member',views.add_member),
+        url(r'^add/(\w+)/$', views.add),
         url(r'^$', views.index)
         ]
 
