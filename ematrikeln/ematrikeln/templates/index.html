@@ -3,4 +3,8 @@
 {% block content  %}
 <h1> Öfns E-matrikel </h1>
 <p> här borde komma en lista på alla medlemmar </p>
+{% for x in all  %}
+{{ x.firstName }} 
+{% endfor  %}
+
 {% endblock %}
