@@ -5,42 +5,36 @@
 
 <script>
 $(document).ready(function() {
-    if({{showdialog }}){
-       $('#success').modal('show')
+    var otherChosen = function(id,target){
+            if($('#'+id).val()==='Annat'){
+                $('#'+target).removeClass('hidden')
+            }else{
+                $('#'+target).addClass('hidden')
+            }
+
     }
-    $('#gymnasium').change(function(){
-        if($(this).val()==='Annat'){
-            $('#gymnasiumAnnat').removeClass('hidden')
-        }else{
-            $('#gymnasiumAnnat').addClass('hidden')
+        if({{showdialog }}){
+            $('#success').modal('show')
         }
+        otherChosen('gymnasium','gymnasiumAnnat')
+        otherChosen('school','schoolAnnat')
+        otherChosen('hometown','hometownAnnat')
+
+        $('#gymnasium').change(otherChosen('gymnasium','gymnasiumAnnat'));
+        $('#school').change(otherChosen('school','schoolAnnat'))
+        $('#hometown').change(otherChosen('hometown','hometownAnnat'))
     });
-    $('#school').change(function(){
-        if($(this).val()==='Annat'){
-            $('#schoolAnnat').removeClass('hidden')
-        }else{
-            $('#schoolAnnat').addClass('hidden')
-        }
-    });
-    $('#hometown').change(function(){
-        if($(this).val()==='Annat'){
-            $('#hometownAnnat').removeClass('hidden')
-        }else{
-            $('#hometownAnnat').addClass('hidden')
-        }
-    });
-});
 </script>
 
 
 <div id="success"  class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-        <div class="form-control">
-        <p> the save was a success? </p>
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="form-control">
+                <p> the save was a success? </p>
+            </div>
         </div>
     </div>
-  </div>
 </div>
 
 
@@ -79,7 +73,7 @@ $(document).ready(function() {
         <label for="gymnasium">Gymnasium</label>
         <select form="newMember" id="gymnasium" name="gymnasium"  class="form-control">
             {% for i  in gymnasium   %}
-            <option> {{ i }} </option>
+            <option> {{ i.name }} </option>
             {% endfor %}
             <option> Annat </option>
             <input type="TEXT" class="form-control hidden" name="gymnasiumAnnat"  id="gymnasiumAnnat" placeholder="Exempel Gymnasium">
@@ -89,7 +83,7 @@ $(document).ready(function() {
         <label for="hometown">Hemstad</label>
         <select form="newMember" id="hometown" class="form-control" name="hometown" >
             {% for i  in hometownList  %}
-            <option> {{ i }} </option>
+            <option> {{ i.name }} </option>
             {% endfor %}
             <option> Annat </option>
             <input type="TEXT" class="form-control hidden" id="hometownAnnat" name="hometownAnnat"  placeholder="Exempel hemstad">
@@ -99,7 +93,7 @@ $(document).ready(function() {
         <label for="school">Skola</label>
         <select form="newMember" id="school" class="form-control" name="school">
             {% for i  in schoolList  %}
-            <option> {{ i }} </option>
+            <option> {{ i.name }} </option>
             {% endfor %}
             <option> Annat </option>
             <input type="TEXT" class="form-control hidden" id="schoolAnnat" name="schoolAnnat" placeholder="Exempel skola">
