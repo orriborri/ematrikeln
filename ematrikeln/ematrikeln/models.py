@@ -1,17 +1,17 @@
 from django.db import models
 
 class Town(models.Model):
-    name = models.CharField(max_length=30,default='loviisa') 
+    name = models.CharField(max_length=30) 
 class Gymnasium(models.Model):
     name = models.CharField(max_length=30)
 class Key(models.Model):
-    number = models.IntegerField(null=True)
+    number = models.IntegerField()
 
 class Post(models.Model):
     name = models.CharField(max_length=30)
 
 class Board(models.Model):
-    year = models.IntegerField(null=True)
+    year = models.IntegerField()
 
 class School(models.Model):
     name = models.CharField(max_length=30)
@@ -24,8 +24,10 @@ class User(models.Model):
     lastName    = models.CharField(max_length=30)
     study       = models.CharField(max_length=30)
     postcode    = models.CharField(max_length=10)
-    homeTown    = models.ForeignKey(Town)
-#    key         = models.ForeignKey(Key)
+    homeTown    = models.ForeignKey(Town, null=True)
+    school      = models.ForeignKey(School, null=True)
+    gymnasium   = models.ForeignKey(Gymnasium, null=True)
+    #key         = models.ForeignKey(Key)
 
 class Funktunar(models.Model):
     post    = models.ForeignKey(Post)

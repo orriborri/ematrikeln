@@ -11,13 +11,13 @@ def index(req):
     return(render(req,'index.html',{'all':allMembers}))
 
 def add(req,state):
-    if state is None:
+    if state is '':
         success = 'false'
     else:
         success = 'true'
     schoolList = sorted(School.objects.all())
     hometownList = sorted(Town.objects.all())
-    gymnasiumList = sorted(Gymnasium.School.objects.all())
+    gymnasiumList = sorted(Gymnasium.objects.all())
     #schoolList = sorted(['Aalto Universitet','Helsingfors Universitet','Arcada','Sibelius Akademin'])
     #gymnasiumList = sorted(['Kotka svenska samskola','Lovisa Gymnasium','Borgå Gymnasium','Sibbo Gymnasium'])
     return(render(req,'new.html',{'showdialog':success,'gymnasium':gymnasiumList,'schoolList':schoolList,'hometownList':hometownList}))
@@ -43,16 +43,14 @@ def add_member(req):
     else:
         school = req.POST['schoolAnnat']
     study = req.POST['study']
-    # medlemsavgift = req.POST['Betalat']
-    newMember = User.objects.create()
+    # medlemsavgift = req.POST['Betalat'
+    
+    newMember = User.objects.create(school = School.objects.get_or_create(name=school)[0], homeTown = Town.objects.get_or_create(name=hometown)[0], gymnasium = Gymnasium.objects.get_or_create(name=gymnasium)[0])
     newMember.lastName = lastName
     newMember.address = address
     newMember.city = city
     newMember.email = epost
     newMember.study = study
-    newMember.school = School.objects.get_or_create(name=school)
-    newMember.hometown = Town.objects.get_or_create(name=hometown)
-    newMember.gymnasium = Gymnasium.objects.get_or_create(name=gymnasium)
     newMember.poscode = postcode
 
     newMember.save()
