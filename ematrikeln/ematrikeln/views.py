@@ -15,9 +15,9 @@ def add(req,state):
         success = 'false'
     else:
         success = 'true'
-    schoolList = sorted(School.objects.all())
-    hometownList = sorted(Town.objects.all())
-    gymnasiumList = sorted(Gymnasium.objects.all())
+    schoolList = School.objects.all().extra(order_by=['name'])
+    hometownList = Town.objects.all().extra(order_by=['name'])
+    gymnasiumList = Gymnasium.objects.all().extra(order_by=['name'])
     #schoolList = sorted(['Aalto Universitet','Helsingfors Universitet','Arcada','Sibelius Akademin'])
     #gymnasiumList = sorted(['Kotka svenska samskola','Lovisa Gymnasium','Borgå Gymnasium','Sibbo Gymnasium'])
     return(render(req,'new.html',{'showdialog':success,'gymnasium':gymnasiumList,'schoolList':schoolList,'hometownList':hometownList}))
@@ -29,23 +29,26 @@ def add_member(req):
     city        = req.POST['city']
     postcode    = req.POST['postcode']
     epost       = req.POST['email']
-    if req.POST['gymnasiumAnnat'] is not None:
+    print(type(req.POST['gymnasium']))
+
+    if req.POST['gymnasium'] != 'Annat':
         gymnasium = req.POST['gymnasium']
     else:
         gymnasium = req.POST['gymnasiumAnnat']
-    hemsida     = req.POST['hometown']
-    if req.POST['hometownAnnat'] is '':
+    if req.POST['hometown'] != 'Annat':
         hometown = req.POST['hometown']
     else:
         hometown = req.POST['hometownAnnat']
-    if req.POST['schoolAnnat'] is '':
+    if req.POST['school'] != 'Annat':
         school = req.POST['school']
     else:
         school = req.POST['schoolAnnat']
     study = req.POST['study']
-    # medlemsavgift = req.POST['Betalat'
+    print("home"+hometown)
+   # medlemsavgift = req.POST['Betalat'
     
     newMember = User.objects.create(school = School.objects.get_or_create(name=school)[0], homeTown = Town.objects.get_or_create(name=hometown)[0], gymnasium = Gymnasium.objects.get_or_create(name=gymnasium)[0])
+    newMember.firstName = firstName
     newMember.lastName = lastName
     newMember.address = address
     newMember.city = city

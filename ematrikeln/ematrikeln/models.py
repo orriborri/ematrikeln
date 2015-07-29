@@ -18,12 +18,13 @@ class School(models.Model):
 
 class User(models.Model):
     type        = models.CharField(max_length=30)
-    email       = models.EmailField()
+    email       = models.EmailField(max_length=30)
     adress      = models.CharField(max_length=30)
     firstName   = models.CharField(max_length=30)
     lastName    = models.CharField(max_length=30)
     study       = models.CharField(max_length=30)
     postcode    = models.CharField(max_length=10)
+    city        = models.CharField(max_length=30)
     homeTown    = models.ForeignKey(Town, null=True)
     school      = models.ForeignKey(School, null=True)
     gymnasium   = models.ForeignKey(Gymnasium, null=True)
