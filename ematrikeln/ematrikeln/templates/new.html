@@ -5,25 +5,26 @@
 
 <script>
 $(document).ready(function() {
-    var otherChosen = function(id,target){
-            if($('#'+id).val()==='Annat'){
-                $('#'+target).removeClass('hidden')
-            }else{
-                $('#'+target).addClass('hidden')
-            }
+    function otherChosen(id,target){
+        if($('#'+id).val()==='Annat'){
+            $('#'+target).removeClass('hidden');
+        }else{
+            $('#'+target).addClass('hidden');
+        }
 
     }
-        if({{showdialog }}){
-            $('#success').modal('show')
-        }
-        otherChosen('gymnasium','gymnasiumAnnat')
-        otherChosen('school','schoolAnnat')
-        otherChosen('hometown','hometownAnnat')
 
-        $('#gymnasium').change(otherChosen('gymnasium','gymnasiumAnnat'));
-        $('#school').change(otherChosen('school','schoolAnnat'))
-        $('#hometown').change(otherChosen('hometown','hometownAnnat'))
-    });
+    $('#gymnasium').change(function(){otherChosen('gymnasium','gymnasiumAnnat')});
+    $('#school').change(function(){otherChosen('school','schoolAnnat')});
+    $('#hometown').change(function(){otherChosen('hometown','hometownAnnat')});
+    if({{showdialog }}){
+        $('#success').modal('show');
+    }
+    otherChosen('gymnasium','gymnasiumAnnat');
+    otherChosen('school','schoolAnnat');
+    otherChosen('hometown','hometownAnnat');
+
+});
 </script>
 
 
