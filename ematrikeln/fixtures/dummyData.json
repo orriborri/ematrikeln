@@ -1,0 +1,32 @@
+[
+    {
+        "model" : "ematrikeln.Gymnasium",
+        "pk" : 1,
+        "fields":{
+            "name" : "Borgå Gymnasium"
+        }
+    },
+    {
+        "model" : "ematrikeln.Gymnasium",
+        "pk" : 2,
+        "fields":{
+            "name" : "Lovisa Gymnasium"
+        }
+    },
+
+    {
+        "model" : "ematrikeln.Gymnasium",
+        "pk" : 3,
+        "fields":{
+            "name" : "Sibbo Gymnasium"
+        }
+    },
+
+    {
+        "model" : "ematrikeln.Gymnasium",
+        "pk" : 4,
+        "fields":{
+            "name" : "Kotka svenska sammskola"
+        }
+    }
+]
