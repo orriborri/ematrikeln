@@ -12,6 +12,7 @@ urlpatterns = [
 
         url(r'^admin/', include(admin.site.urls)),
         url(r'^add_member',views.add_member),
+        url(r'^medlem/(\w*?)$', views.view_member),
         url(r'^add/(\w*?)$', views.add),
         url(r'^$', views.index)
         ]
