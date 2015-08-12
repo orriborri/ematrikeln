@@ -21,6 +21,9 @@ def add(req,state):
     #schoolList = sorted(['Aalto Universitet','Helsingfors Universitet','Arcada','Sibelius Akademin'])
     #gymnasiumList = sorted(['Kotka svenska samskola','Lovisa Gymnasium','Borgå Gymnasium','Sibbo Gymnasium'])
     return(render(req,'new.html',{'showdialog':success,'gymnasium':gymnasiumList,'schoolList':schoolList,'hometownList':hometownList}))
+def view_member(req,req_id):
+    member =  User.objects.get(id=req_id)
+    return(render(req,'medlem.html',{'user':member}))
 
 def add_member(req):
     firstName   = req.POST['firstName']
@@ -46,7 +49,6 @@ def add_member(req):
     study = req.POST['study']
     print("home"+hometown)
    # medlemsavgift = req.POST['Betalat'
-    
     newMember = User.objects.create(school = School.objects.get_or_create(name=school)[0], homeTown = Town.objects.get_or_create(name=hometown)[0], gymnasium = Gymnasium.objects.get_or_create(name=gymnasium)[0])
     newMember.firstName = firstName
     newMember.lastName = lastName
@@ -55,6 +57,5 @@ def add_member(req):
     newMember.email = epost
     newMember.study = study
     newMember.poscode = postcode
-
     newMember.save()
     return redirect('/add/success')
