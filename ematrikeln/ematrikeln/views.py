@@ -29,11 +29,10 @@ def add_member(req):
     firstName   = req.POST['firstName']
     lastName    = req.POST['lastName']
     address     = req.POST['address']
+    phone       = req.POST['phonenumber']
     city        = req.POST['city']
     postcode    = req.POST['postcode']
     epost       = req.POST['email']
-    print(type(req.POST['gymnasium']))
-
     if req.POST['gymnasium'] != 'Annat':
         gymnasium = req.POST['gymnasium']
     else:
@@ -47,15 +46,15 @@ def add_member(req):
     else:
         school = req.POST['schoolAnnat']
     study = req.POST['study']
-    print("home"+hometown)
    # medlemsavgift = req.POST['Betalat'
     newMember = User.objects.create(school = School.objects.get_or_create(name=school)[0], homeTown = Town.objects.get_or_create(name=hometown)[0], gymnasium = Gymnasium.objects.get_or_create(name=gymnasium)[0])
     newMember.firstName = firstName
     newMember.lastName = lastName
-    newMember.address = address
+    newMember.phone = phone
+    newMember.adress = address
     newMember.city = city
     newMember.email = epost
     newMember.study = study
-    newMember.poscode = postcode
+    newMember.postcode = postcode
     newMember.save()
     return redirect('/add/success')

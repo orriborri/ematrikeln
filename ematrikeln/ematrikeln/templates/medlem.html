@@ -5,5 +5,21 @@
     <tr>
         <td>Namn</td><td>{{user.firstName}} {{user.lastName}}</td>
     </tr>
+    <tr>
+        <td>Adress</td><td>{{user.adress}}, {{user.postcode}} {{user.city}}</td>
+    </tr>
+    <tr>
+        <td>Telefon nummer</td><td> {{user.phone}} </td>
+    </tr>
+    <tr>
+        <td>E-post</td><td> {{user.email}} </td>
+    </tr>
+    <tr>
+        <td>Hemstad</td><td>{{user.homeTown.name}}</td>
+    </tr>
+    <tr>
+        <td>Gymnasium</td><td>{{user.gymnasium.name}}</td>
+    </tr>
+    
 </table>
 {% endblock %}
