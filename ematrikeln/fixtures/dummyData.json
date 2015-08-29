@@ -28,5 +28,40 @@
         "fields":{
             "name" : "Kotka svenska sammskola"
         }
+    },
+    {
+        "model" : "ematrikeln.Town",
+        "pk" : 1,
+        "fields":{
+            "name" : "Lovisa"
+        }
+    },
+    {
+        "model" : "ematrikeln.Town",
+        "pk" : 2,
+        "fields":{
+            "name" : "Borgå"
+        }
+    },
+    {
+        "model" : "ematrikeln.Town",
+        "pk" : 3,
+        "fields":{
+            "name" : "Sibbo"
+        }
+    },
+    {
+        "model" : "ematrikeln.School",
+        "pk" : 1,
+        "fields":{
+            "name":"Helsingfors Universitet"
+        }
+    },
+    {
+        "model" : "ematrikeln.Town",
+        "pk" : 4,
+        "fields" :{
+            "name": "Kotka"
+        }
     }
 ]
