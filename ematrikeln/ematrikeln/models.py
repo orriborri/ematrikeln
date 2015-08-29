@@ -1,7 +1,7 @@
 from django.db import models
 
 class Town(models.Model):
-    name = models.CharField(max_length=30) 
+    name = models.CharField(max_length=30)
 class Gymnasium(models.Model):
     name = models.CharField(max_length=30)
 class Key(models.Model):
@@ -18,6 +18,7 @@ class School(models.Model):
 
 class User(models.Model):
     type        = models.CharField(max_length=30)
+    phone       = models.CharField(max_length=20)
     email       = models.EmailField(max_length=30)
     adress      = models.CharField(max_length=30)
     firstName   = models.CharField(max_length=30)
