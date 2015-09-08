@@ -1,25 +1,45 @@
 {% extends "base.html"%}
 
 {% block content  %}
-<table class="table">
-    <tr>
-        <td>Namn</td><td>{{user.firstName}} {{user.lastName}}</td>
-    </tr>
-    <tr>
-        <td>Adress</td><td>{{user.adress}}, {{user.postcode}} {{user.city}}</td>
-    </tr>
-    <tr>
-        <td>Telefon nummer</td><td> {{user.phone}} </td>
-    </tr>
-    <tr>
-        <td>E-post</td><td> {{user.email}} </td>
-    </tr>
-    <tr>
-        <td>Hemstad</td><td>{{user.homeTown.name}}</td>
-    </tr>
-    <tr>
-        <td>Gymnasium</td><td>{{user.gymnasium.name}}</td>
-    </tr>
-    
-</table>
+<span style="float: right;" >
+    <button type="button" class="glyphicon glyphicon-remove" data-toggle="modal" data-target="#remove"></button>
+</span>
+<div id="remove" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <p>Vill du tabort medlem {{user.firstName}} {{user.lastName}}? </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Stäng</button>
+                <button type="button" class="btn btn-primary"onclick="window.location.href='delete/{{user.id}}'" >Ta bort</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <table class="table">
+        <tr>
+            <td>Namn</td><td>{{user.firstName}} {{user.lastName}}</td>
+        </tr>
+        <tr>
+            <td>Adress</td><td>{{user.adress}}, {{user.postcode}} {{user.city}}</td>
+        </tr>
+        <tr>
+            <td>Telefon nummer</td><td> {{user.phone}} </td>
+        </tr>
+        <tr>
+            <td>E-post</td><td> {{user.email}} </td>
+        </tr>
+        <tr>
+            <td>Hemstad</td><td>{{user.homeTown.name}}</td>
+        </tr>
+        <tr>
+            <td>Gymnasium</td><td>{{user.gymnasium.name}}</td>
+        </tr>
+    </table>
+</div>
 {% endblock %}
