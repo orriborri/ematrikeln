@@ -24,7 +24,10 @@ def add(req,state):
 def view_member(req,req_id):
     member =  User.objects.get(id=req_id)
     return(render(req,'medlem.html',{'user':member}))
-
+def delete_member(req,req_id):
+    member =  User.objects.get(id= req_id)
+    member.delete()
+    return redirect('/')
 def add_member(req):
     firstName   = req.POST['firstName']
     lastName    = req.POST['lastName']
