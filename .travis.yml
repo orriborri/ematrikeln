@@ -3,9 +3,13 @@ python:
     - "3.5"
 env:
     -DJANGO=1.8.5
+# command to install dependencies
+
+
 install:
-	- pip install -q django==$DJANGO
-	- pip install -q . --use-mirrors
+  -pip install django==$DJANGO
+  -pip install . 
+
 # command to run tests
 script:
     -python manage test
