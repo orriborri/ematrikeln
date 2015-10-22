@@ -40,6 +40,24 @@
         <tr>
             <td>Gymnasium</td><td>{{user.gymnasium.name}}</td>
         </tr>
+        <tr>
+            <td>Skola</td><td>{{user.study.studyLine.school.name}}</td>
+        </tr>
+        <tr>
+            <td>Studielinje</td><td>{{user.study.studyLine.name}}</td>
+        </tr>
+        <tr>
+            <td>Börjat studera</td><td>{{user.study.startYear}}</td>
+        </tr>
+        <tr>
+            <td>Slutat studera</td><td>{{user.study.endYear}}</td>
+        </tr>
+        <tr>
+            <td>Graduerad</td><td>{{user.study.graduated}}</td>
+        </tr>
+        <tr>
+            <td>Aktiv</td><td>{{user.study.active}}</td>
+        </tr>
     </table>
 </div>
 {% endblock %}
