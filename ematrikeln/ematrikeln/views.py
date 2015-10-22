@@ -18,8 +18,6 @@ def add(req,state):
     schoolList = School.objects.all().extra(order_by=['name'])
     hometownList = Town.objects.all().extra(order_by=['name'])
     gymnasiumList = Gymnasium.objects.all().extra(order_by=['name'])
-    #schoolList = sorted(['Aalto Universitet','Helsingfors Universitet','Arcada','Sibelius Akademin'])
-    #gymnasiumList = sorted(['Kotka svenska samskola','Lovisa Gymnasium','Borgå Gymnasium','Sibbo Gymnasium'])
     return(render(req,'new.html',{'showdialog':success,'gymnasium':gymnasiumList,'schoolList':schoolList,'hometownList':hometownList}))
 def view_member(req,req_id):
     member =  User.objects.get(id=req_id)
@@ -49,8 +47,13 @@ def add_member(req):
     else:
         school = req.POST['schoolAnnat']
     study = req.POST['study']
-   # medlemsavgift = req.POST['Betalat'
-    newMember = User.objects.create(school = School.objects.get_or_create(name=school)[0], homeTown = Town.objects.get_or_create(name=hometown)[0], gymnasium = Gymnasium.objects.get_or_create(name=gymnasium)[0])
+    endYear = req.POST['endYear']
+    startYear = req.POST['startYear']
+    active = req.POST['active']
+    # medlemsavgift = req.POST['Betalat']
+    studyLine = StudyLine.objects.get_or_create(school = School.objects.get_or_create(name=school)[0], name = study)
+    study = Study.objects.create(startYear = startYear,graduated = False,active=active,endYear=endYear, studyLine = studyLine[0])
+    newMember = User.objects.create(homeTown = Town.objects.get_or_create(name=hometown)[0], gymnasium = Gymnasium.objects.get_or_create(name=gymnasium)[0], study=study)
     newMember.firstName = firstName
     newMember.lastName = lastName
     newMember.phone = phone
