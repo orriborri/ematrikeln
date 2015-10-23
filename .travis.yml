@@ -1,16 +1,24 @@
+sudo: false
 language: python
 python:
-    - "3.5"
+ - "2.7"
+ - "3.2"
+ - "3.3"
+ - "3.4"
 env:
-    -DJANGO=1.8.5
-# command to install dependencies
-
-
+  matrix:
+   - DJANGO="Django<1.7"
+   - DJANGO="Django<1.8"
+   - DJANGO="Django<1.9"
 install:
-  -pip install django==1.8.5
-  -pip install . 
-
-# command to run tests
-script:
-    -python manage test
-
+ - pip install $DJANGO --use-mirrors
+ - pip install . --use-mirrors
+ - pip install coverage==3.7.1
+branches:
+ only:
+  - master
+script: coverage run manage.py test allauth
+after_success:
+  - coverage report
+  - pip install --quiet python-coveralls
+  - coveralls
