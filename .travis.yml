@@ -10,7 +10,7 @@ env:
 install:
  - pip install $DJANGO --use-mirrors
  - pip install coverage==3.7.1
-script: coverage run manage.py test allauth
+script: coverage run ematrikeln/manage.py test 
 after_success:
   - coverage report
   - pip install --quiet python-coveralls
