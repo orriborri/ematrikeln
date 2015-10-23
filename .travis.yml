@@ -7,7 +7,7 @@ env:
 
 
 install:
-  -pip install django==$DJANGO
+  -pip install django==1.8.5
   -pip install . 
 
 # command to run tests
