@@ -9,7 +9,6 @@ env:
    - DJANGO="Django<1.9"
 install:
  - pip install $DJANGO --use-mirrors
- - pip install . --use-mirrors
  - pip install coverage==3.7.1
 script: coverage run manage.py test allauth
 after_success:
