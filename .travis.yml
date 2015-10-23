@@ -8,7 +8,7 @@ env:
    - DJANGO="Django<1.8"
    - DJANGO="Django<1.9"
 install:
- - pip install $DJANGO --use-mirrors
+ - pip install $DJANGO 
  - pip install coverage==3.7.1
 script: coverage run ematrikeln/manage.py test 
 after_success:
