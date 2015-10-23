@@ -9,7 +9,7 @@ env:
    - DJANGO="Django<1.9"
 install:
  - pip install $DJANGO 
- - pip install coverage==3.7.1
+ - pip install coverage
 script: coverage run ematrikeln/manage.py test 
 after_success:
   - coverage report
