@@ -14,9 +14,6 @@ install:
  - pip install $DJANGO --use-mirrors
  - pip install . --use-mirrors
  - pip install coverage==3.7.1
-branches:
- only:
-  - master
 script: coverage run manage.py test allauth
 after_success:
   - coverage report
