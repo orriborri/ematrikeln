@@ -9,7 +9,8 @@ env:
 install:
  - pip install $DJANGO
  - pip install coverage
-script:"ls; coverage run manage.py test" 
+script:
+    "ls; coverage run manage.py test" 
 after_success:
   - coverage report
   - pip install --quiet python-coveralls
