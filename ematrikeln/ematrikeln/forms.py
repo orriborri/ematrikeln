@@ -1,4 +1,5 @@
 from django import forms
+from ematrikeln.models import *
 
 class newMember(forms.Form):
     firstname = forms.CharField(max_length=100)
@@ -8,11 +9,11 @@ class newMember(forms.Form):
     postcode  = forms.CharField(max_length=6)
     email     = forms.EmailField(min_length=3)
     phone     = forms.CharField(max_length=10)
-    homeTown  = forms.ModelChoiceField(queryset=Town.objects.all().order_by('name'))
-    homeTownAnnat  = forms.ModelChoiceField(queryset=Town.objects.all().order_by('name'))
-    gymnasium = forms.ModelChoiceField(queryset=Gymnasium.objects.all().order_by('name'))
+    homeTown  = forms.ModelChoiceField(queryset=Town.objects.all())
+    homeTownAnnat  = forms.CharField(max_length=100)
+    gymnasium = forms.ModelChoiceField(queryset=Gymnasium.objects.all())
     gymnasiumAnnat = forms.CharField(max_length=100)
-    school    = forms.ModelChoiceField(queryset=School.objects.all().order_by('name'))
+    school    = forms.ModelChoiceField(queryset=School.objects.all())
     schoolAnnat = forms.CharField(max_length=100)
     study     = forms.CharField(max_length=50)
 

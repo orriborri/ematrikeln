@@ -15,11 +15,8 @@ def add(req,state):
         success = 'false'
     else:
         success = 'true'
-    schoolList = School.objects.all().extra(order_by=['name'])
-    hometownList = Town.objects.all().extra(order_by=['name'])
-    gymnasiumList = Gymnasium.objects.all().extra(order_by=['name'])
-
-    return(render(req,'new.html',{'showdialog':success,'gymnasium':gymnasiumList,'schoolList':schoolList,'hometownList':hometownList}))
+    form = newMember()
+    return(render(req,'new.html',{'showdialog':success,'form':form}))
 
 def view_member(req,req_id):
     member =  User.objects.get(id=req_id)

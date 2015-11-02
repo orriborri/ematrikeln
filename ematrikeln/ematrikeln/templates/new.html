@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+{% load bootstrap %}
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
 <script>
@@ -8,21 +9,23 @@ $(document).ready(function() {
     function otherChosen(id,target){
         if($('#'+id).val()==='Annat'){
             $('#'+target).removeClass('hidden');
+            $("label[for='"+target+"']").removeClass('hidden');
         }else{
             $('#'+target).addClass('hidden');
+            $("label[for='"+target+"']").addClass('hidden');
         }
 
     }
 
-    $('#gymnasium').change(function(){otherChosen('gymnasium','gymnasiumAnnat')});
-    $('#school').change(function(){otherChosen('school','schoolAnnat')});
-    $('#hometown').change(function(){otherChosen('hometown','hometownAnnat')});
+    $('#id_gymnasium').change(function(){otherChosen('gymnasium','id_gymnasiumAnnat')});
+    $('#id_school').change(function(){otherChosen('school','id_schoolAnnat')});
+    $('#id_homeTown').change(function(){otherChosen('homeTown','id_homeTownAnnat')});
     if({{showdialog }}){
         $('#success').modal('show');
     }
-    otherChosen('gymnasium','gymnasiumAnnat');
-    otherChosen('school','schoolAnnat');
-    otherChosen('hometown','hometownAnnat');
+    otherChosen('gymnasium','id_gymnasiumAnnat');
+    otherChosen('school','id_schoolAnnat');
+    otherChosen('homeTown','id_homeTownAnnat');
 
 });
 </script>
@@ -38,94 +41,14 @@ $(document).ready(function() {
     </div>
 </div>
 
-
-
-<form id="newMember" action="/add_member/" method="post">
-    <div class="form-group">
-        <label  for="{{form.firstName.id_for_label}}">Förnamn</label>
-        <input type="TEXT" name="firstName"  class="form-control" id="firstName" placeholder="Förnamn" required>
-    </div>
-    <div class="form-group">
-        <label for="{{form.firstName.id_for_label}}">Efternamn</label>
-        <input type="TEXT" name="lastName"  class="form-control" id="lastName" placeholder="Efternamn" required>
-    </div>
-    <div class="form-group">
-        <label for="{{form.address.id_for_label}}">Adress</label>
-        <input type="TEXT" name="address" class="form-control" id="address" placeholder="Exempelgata 1 a 2" required>
-    </div>
-    <div class="form-group">
-        <label for="{{form.city.id_for_label}}">Stad</label>
-        <input type="TEXT" name="city" class="form-control" id="city" placeholder="Exempelstad" required>
-    </div>
-    <div class="form-group">
-        <label for="{{form.postcode.id_for_label}}">Postkod</label>
-        <input type="NUMBER" name="postcode" class="form-control" id="postcode" placeholder="06660" required>
-    </div>
-    <div class="form-group">
-        <label for="{{form.email.id_for_label}}">E-post</label>
-        <input type="email" name="email"  class="form-control" id="email" placeholder="Epost" required>
-    </div>
-    <div class="form-group">
-        <label for="{{form.phonenumber.id_for_label}}">Telefon nummer</label>
-        <input type="NUMBER" name="phonenumber" class="form-control" id="phonenumber" placeholder="040 123456" required>
-    </div>
-
-    <div class="form-group">
-        <label for="gymnasium">Gymnasium</label>
-        <select form="newMember" id="gymnasium" name="gymnasium"  class="form-control">
-            {% for i  in gymnasium   %}
-            <option> {{ i.name }} </option>
-            {% endfor %}
-            <option> Annat </option>
-            <input type="TEXT" class="form-control hidden" name="gymnasiumAnnat"  id="gymnasiumAnnat" placeholder="Exempel Gymnasium">
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="hometown">Hemstad</label>
-        <select form="newMember" id="hometown" class="form-control" name="hometown" >
-            {% for i  in hometownList  %}
-            <option> {{ i.name }} </option>
-            {% endfor %}
-            <option> Annat </option>
-            <input type="TEXT" class="form-control hidden" id="hometownAnnat" name="hometownAnnat"  placeholder="Exempel hemstad">
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="school">Skola</label>
-        <select form="newMember" id="school" class="form-control" name="school">
-            {% for i  in schoolList  %}
-            <option> {{ i.name }} </option>
-            {% endfor %}
-            <option> Annat </option>
-            <input type="TEXT" class="form-control hidden" id="schoolAnnat" name="schoolAnnat" placeholder="Exempel skola">
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label for="study">Studieinrikning</label>
-        <input type="TEXT" class="form-control" id="study" name="study"  placeholder="Exempel inrikning" required>
-    </div>
-    <div class="form-group">
-        <label for="startYear">Börjat studera</label>
-        <input type="TEXT" class="form-control" id="startYear" name="startYear" required>
-    </div>
-    <div class="form-group">
-        <label for="endYear">Blivit klar</label>
-        <input type="TEXT" class="form-control" id="endYear" name="endYear" required>
-    </div>
-    <div class="form-gruop">
-        <label for="active">Aktiv studie inriktning</label>
-        <input type="checkbox" id="active" class="form-control" name="active"></input>
-    </div>
-    <div class="form-gruop">
-        <label for="graduerad">graduerad</label>
-        <input type="checkbox" id="graduerad" class="form-control" name="graduerad"></input>
-    </div>
-    <div class="form-gruop">
-        <label for="checkbox">Betatalat medlemsavgift</label>
-        <input type="checkbox" id="checkbox" class="form-control" name="Betatalat"></input>
-    </div>
-    <input type="submit" class="form-control"  value="OK">
+<form role="form">
+    <legend>Form Title</legend>
     {% csrf_token %}
+    {{ form|bootstrap }}
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
 </form>
+
+
 {% endblock %}
