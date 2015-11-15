@@ -24,7 +24,7 @@ class StudyLine(models.Model):
 class Study(models.Model):
     studyLine = models.ForeignKey(StudyLine)
     startYear = models.IntegerField()
-    endYear = models.IntegerField()
+    endYear = models.IntegerField(null=True)
     graduated = models.BooleanField()
     active = models.BooleanField()
 class User(models.Model):

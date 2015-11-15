@@ -1,4 +1,20 @@
 [
+    {   "model" : "ematrikeln.StudyLine",
+        "pk"    : 1,
+        "fields": {
+            "name":"Datateknik",
+            "school":1
+        }
+    },
+    {   "model" : "ematrikeln.Study",
+        "pk": 1,
+        "fields":{
+            "studyLine": 1,
+            "startYear": "2014",
+            "graduated":"False",
+            "active":"True"
+        }
+    },
     {
         "model" : "ematrikeln.User",
         "pk" : 1,
@@ -11,7 +27,7 @@
             "adress" : "exmpelgata 22",
             "postcode": "06660",
             "email" :"herpderp@herp.derp",
-            "school" : 1,
+            "study" : 1,
             "homeTown": 1,
             "gymnasium": 1
         }

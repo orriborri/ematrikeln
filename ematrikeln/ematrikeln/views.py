@@ -10,37 +10,12 @@ def index(req):
     allMembers = User.objects.all()
     return(render(req,'index.html',{'all':allMembers}))
 
-def dict2list(list1,list2,list3,other):
-    res1 = []
-    res2 = []
-    res3 = []
-    for i in list1:
-        print(i)
-        res1.append((i['id'],i['name']))
-    for i in list2:
-        res2.append((i['id'],i['name']))
-    for i in list3:
-        res3.append((i['id'],i['name']))
-    res1.sort()
-    res1.append(('-1',other))
-    res2.sort()
-    res2.append(('-1',other))
-    res3.sort()
-    res3.append(('-1',other))
-    return [res1,res2,res3]
-
 def add(req,state):
     if state is '':
         success = 'false'
     else:
         success = 'true'
-
-    hometownlist    = Town.objects.all()
-    schoollist      = School.objects.all()
-    gymnasiumlist   = Gymnasium.objects.all()
-    herp = dict2list(hometownlist.values(),gymnasiumlist.values(),schoollist.values(),"Annat")
-    print(herp)
-    form = newMember(*herp)
+    form = newMember()
     return(render(req,'new.html',{'showdialog':success,'form':form}))
 
 def view_member(req,req_id):
