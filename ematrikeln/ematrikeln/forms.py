@@ -12,17 +12,17 @@ class newMember(forms.Form):
     email     = forms.EmailField(min_length=3)
     phone     = forms.CharField(max_length=10)
     homeTown  = forms.ModelChoiceField(
-            queryset=Town.objects.all(),
+            queryset=Town.objects.all().order_by('name'),
             empty_label="Annat",
             required=True)
     homeTownAnnat  = forms.CharField(max_length=100)
     gymnasium = forms.ModelChoiceField(
-            queryset=Gymnasium.objects.all(),
+            queryset=Gymnasium.objects.all().order_by('name'),
             empty_label = "Annat",
             required=True)
     gymnasiumAnnat = forms.CharField(max_length=100)
     school    = forms.ModelChoiceField(
-            queryset=School.objects.all(),
+            queryset=School.objects.all().order_by('name'),
             empty_label = "Annat",
             required=True)
     schoolAnnat = forms.CharField(max_length=100)
