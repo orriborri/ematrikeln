@@ -2,8 +2,12 @@ from django.db import models
 
 class Town(models.Model):
     name = models.CharField(max_length=30)
+    def __str__(self):
+        return "%s" % self.name
 class Gymnasium(models.Model):
     name = models.CharField(max_length=30)
+    def __str__(self):
+        return "%s" % self.name
 class Key(models.Model):
     number = models.IntegerField()
 class Post(models.Model):
@@ -12,13 +16,15 @@ class Board(models.Model):
     year = models.IntegerField()
 class School(models.Model):
     name = models.CharField(max_length=30)
+    def __str__(self):
+        return "%s" % self.name
 class StudyLine(models.Model):
     name = models.CharField(max_length=30)
     school = models.ForeignKey(School)
 class Study(models.Model):
     studyLine = models.ForeignKey(StudyLine)
     startYear = models.IntegerField()
-    endYear = models.IntegerField()
+    endYear = models.IntegerField(null=True)
     graduated = models.BooleanField()
     active = models.BooleanField()
 class User(models.Model):
