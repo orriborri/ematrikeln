@@ -1,5 +1,4 @@
 from django import forms
-from ematrikeln.models import *
 
 class newMember(forms.Form):
     firstname = forms.CharField(max_length=100, min_length=2)
@@ -41,3 +40,4 @@ class newMember(forms.Form):
         if cleanData.get('school') == None:
             if cleanData.get('schoolAnnat') == "":
                 self.add_error('schoolAnnat', 'Ifall du har valt annat bör du spesifiera vilket')
+    
