@@ -1,0 +1,18 @@
+sudo: false
+language: python
+python:
+ - "3.4"
+env:
+  matrix:
+   - DJANGO="Django<1.8"
+   - DJANGO="Django<1.9"
+install:
+ - pip install $DJANGO
+ - pip install coverage
+ - pip install django_nose
+script:
+    "cd ematrikeln; ls; coverage run manage.py test" 
+after_success:
+  - coverage report
+  - pip install --quiet python-coveralls
+  - coveralls
