@@ -27,6 +27,11 @@ class Study(models.Model):
     endYear = models.IntegerField(null=True)
     graduated = models.BooleanField()
     active = models.BooleanField()
+class MedlemsAvgifter(models.Model):
+    betald = models.CharField(max_length=30,null=True)
+class MedlemsTyp(models.Model):
+    medlemsTyper = (('ordinarieMedlem','Ordinarie Medlem'),('extraMedlem','Extra Medlem'))
+    aldreMedlem = models.BooleanField();
 class User(models.Model):
     type        = models.CharField(max_length=30)
     phone       = models.CharField(max_length=20)
@@ -39,8 +44,8 @@ class User(models.Model):
     homeTown    = models.ForeignKey(Town)
     study       = models.ForeignKey(Study)
     gymnasium   = models.ForeignKey(Gymnasium)
+    MedlemsAvgift = models.ForeignKey(MedlemsAvgifter, null=True)
     #key         = models.ForeignKey(Key)
-
 class Funktunar(models.Model):
     post    = models.ForeignKey(Post)
     year    = models.IntegerField(null=True)

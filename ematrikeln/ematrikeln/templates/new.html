@@ -7,6 +7,7 @@
 <script>
 $(document).ready(function() {
     function otherChosen(id,target){
+        console.log("kakak")
         console.log($('#'+id).val())
         if(!$('#'+id).val()){
             $('#'+target).removeClass('hidden');
@@ -42,12 +43,11 @@ $(document).ready(function() {
     </div>
 </div>
 
-<form role="form">
-    <legend>Form Title</legend>
+<form action="/add/" method="post">
     {% csrf_token %}
     {{ form|bootstrap }}
     <div class="form-group">
-      <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </div>
 </form>
 
