@@ -6,12 +6,12 @@
 <table class="table table-hover">
     <tr><th>Namn</th><th>Adress</th><th>Telefon nummer</th><th>E-post</th>
     {% for x in all  %}
-    <tr onclick="document.location='medlem/'+{{x.id}};">
+    <tr>
     <td>
         {{ x.firstName }} {{ x.lastName}}
     </td>
-    <td> {{ x.adress}} {{x.postcode}} {{x.city}}</td>
-    <td> {{x.phone}}</td>
+    <td> {{ x.address}} {{postcode}} {{x.city}}</td>
+    <td> {{x.phonenumber}}</td>
     <td> {{ x.email }} </td>
     </tr>
 {% endfor  %}
