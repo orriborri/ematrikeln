@@ -28,13 +28,10 @@ class newMember(forms.Form):
             required=True)
     schoolAnnat = forms.CharField(max_length=100)
     study     = forms.CharField(max_length=50)
-<<<<<<< HEAD
     medlemsTyp = forms.ChoiceField(MedlemsTyp.medlemsTyper)
     startYear =forms.CharField(widget=forms.Select())
     def __init__(self):
         super(newMember, self).__init__()
         choices=[(x,x) for x in range(1900, datetime.now().year+1)]
         self.fields['startYear'].choices = choices
-=======
->>>>>>> parent of 691ac10... added hotfix to get rid of error
 

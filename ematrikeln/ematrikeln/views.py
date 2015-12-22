@@ -15,16 +15,9 @@ def add(req,state):
         success = 'false'
     else:
         success = 'true'
-<<<<<<< HEAD
-    schoolList = School.objects.all().extra(order_by=['name'])
-    hometownList = Town.objects.all().extra(order_by=['name'])
-    gymnasiumList = Gymnasium.objects.all().extra(order_by=['name'])
-    return(render(req,'new.html',{'showdialog':success,'gymnasium':gymnasiumList,'schoolList':schoolList,'hometownList':hometownList}))
-=======
     form = newMember()
     return(render(req,'new.html',{'showdialog':success,'form':form}))
 
->>>>>>> parent of 691ac10... added hotfix to get rid of error
 def view_member(req,req_id):
     member =  User.objects.get(id=req_id)
     return(render(req,'medlem.html',{'user':member}))
@@ -32,8 +25,6 @@ def delete_member(req,req_id):
     member =  User.objects.get(id= req_id)
     member.delete()
     return redirect('/')
-<<<<<<< HEAD
-=======
 def add_member(req):
     if req.method == 'POST':
         if req.is_valid():
@@ -76,4 +67,3 @@ def add_member(req):
             return HttpResponse(200)
         return HttpResponse(500)
     return HttpResponse(404)
->>>>>>> parent of 691ac10... added hotfix to get rid of error
