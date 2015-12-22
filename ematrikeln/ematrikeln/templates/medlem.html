@@ -1,0 +1,63 @@
+{% extends "base.html"%}
+
+{% block content  %}
+<span style="float: right;" >
+    <button type="button" class="glyphicon glyphicon-remove" data-toggle="modal" data-target="#remove"></button>
+</span>
+<div id="remove" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <p>Vill du tabort medlem {{user.firstName}} {{user.lastName}}? </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Stäng</button>
+                <button type="button" class="btn btn-primary"onclick="window.location.href='delete/{{user.id}}'" >Ta bort</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <table class="table">
+        <tr>
+            <td>Namn</td><td>{{user.firstName}} {{user.lastName}}</td>
+        </tr>
+        <tr>
+            <td>Adress</td><td>{{user.adress}}, {{user.postcode}} {{user.city}}</td>
+        </tr>
+        <tr>
+            <td>Telefon nummer</td><td> {{user.phone}} </td>
+        </tr>
+        <tr>
+            <td>E-post</td><td> {{user.email}} </td>
+        </tr>
+        <tr>
+            <td>Hemstad</td><td>{{user.homeTown.name}}</td>
+        </tr>
+        <tr>
+            <td>Gymnasium</td><td>{{user.gymnasium.name}}</td>
+        </tr>
+        <tr>
+            <td>Skola</td><td>{{user.study.studyLine.school.name}}</td>
+        </tr>
+        <tr>
+            <td>Studielinje</td><td>{{user.study.studyLine.name}}</td>
+        </tr>
+        <tr>
+            <td>Börjat studera</td><td>{{user.study.startYear}}</td>
+        </tr>
+        <tr>
+            <td>Slutat studera</td><td>{{user.study.endYear}}</td>
+        </tr>
+        <tr>
+            <td>Graduerad</td><td>{{user.study.graduated}}</td>
+        </tr>
+        <tr>
+            <td>Aktiv</td><td>{{user.study.active}}</td>
+        </tr>
+    </table>
+</div>
+{% endblock %}

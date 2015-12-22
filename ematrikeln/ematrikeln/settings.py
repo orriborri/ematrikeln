@@ -38,6 +38,8 @@ INSTALLED_APPS = (
         'django.contrib.messages',
         'django.contrib.staticfiles',
         'ematrikeln',
+        'django_nose',
+	'bootstrapform',
         )
 
 MIDDLEWARE_CLASSES = (
@@ -68,7 +70,7 @@ TEMPLATES = [
                 },
             },
         ]
-
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 WSGI_APPLICATION = 'ematrikeln.wsgi.application'
 
 
