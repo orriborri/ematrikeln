@@ -1,33 +1,32 @@
 {% extends "base.html" %}
 
 {% block content %}
-{% load bootstrap %}
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
 <script>
 $(document).ready(function() {
     function otherChosen(id,target){
-        console.log("kakak")
+<<<<<<< HEAD
+=======
         console.log($('#'+id).val())
+>>>>>>> parent of 691ac10... added hotfix to get rid of error
         if(!$('#'+id).val()){
             $('#'+target).removeClass('hidden');
-            $("label[for='"+target+"']").removeClass('hidden');
         }else{
             $('#'+target).addClass('hidden');
-            $("label[for='"+target+"']").addClass('hidden');
         }
 
     }
 
-    $('#id_gymnasium').change(function(){otherChosen('id_gymnasium','id_gymnasiumAnnat')});
-    $('#id_school').change(function(){otherChosen('id_school','id_schoolAnnat')});
-    $('#id_homeTown').change(function(){otherChosen('id_homeTown','id_homeTownAnnat')});
+    $('#gymnasium').change(function(){otherChosen('gymnasium','gymnasiumAnnat')});
+    $('#school').change(function(){otherChosen('school','schoolAnnat')});
+    $('#hometown').change(function(){otherChosen('hometown','hometownAnnat')});
     if({{showdialog }}){
         $('#success').modal('show');
     }
-    otherChosen('id_gymnasium','id_gymnasiumAnnat');
-    otherChosen('id_school','id_schoolAnnat');
-    otherChosen('id_homeTown','id_homeTownAnnat');
+    otherChosen('gymnasium','gymnasiumAnnat');
+    otherChosen('school','schoolAnnat');
+    otherChosen('hometown','hometownAnnat');
 
 });
 </script>
@@ -43,13 +42,70 @@ $(document).ready(function() {
     </div>
 </div>
 
-<form action="/add/" method="post">
+<form role="form">
+    <legend>Form Title</legend>
     {% csrf_token %}
     {{ form|bootstrap }}
     <div class="form-group">
-        <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-primary">Submit</button>
     </div>
+
+    <div class="form-group">
+        <label for="gymnasium">Gymnasium</label>
+        <select form="newMember" id="gymnasium" name="gymnasium"  class="form-control">
+            {% for i  in gymnasium   %}
+            <option> {{ i.name }} </option>
+            {% endfor %}
+            <option> Annat </option>
+            <input type="TEXT" class="form-control hidden" name="gymnasiumAnnat"  id="gymnasiumAnnat" placeholder="Exempel Gymnasium">
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="hometown">Hemstad</label>
+        <select form="newMember" id="hometown" class="form-control" name="hometown" >
+            {% for i  in hometownList  %}
+            <option> {{ i.name }} </option>
+            {% endfor %}
+            <option> Annat </option>
+            <input type="TEXT" class="form-control hidden" id="hometownAnnat" name="hometownAnnat"  placeholder="Exempel hemstad">
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="school">Skola</label>
+        <select form="newMember" id="school" class="form-control" name="school">
+            {% for i  in schoolList  %}
+            <option> {{ i.name }} </option>
+            {% endfor %}
+            <option> Annat </option>
+            <input type="TEXT" class="form-control hidden" id="schoolAnnat" name="schoolAnnat" placeholder="Exempel skola">
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="study">Studieinrikning</label>
+        <input type="TEXT" class="form-control" id="study" name="study"  placeholder="Exempel inrikning" required>
+    </div>
+    <div class="form-group">
+        <label for="startYear">Börjat studera</label>
+        <input type="TEXT" class="form-control" id="startYear" name="startYear" required>
+    </div>
+    <div class="form-group">
+        <label for="endYear">Blivit klar</label>
+        <input type="TEXT" class="form-control" id="endYear" name="endYear" required>
+    </div>
+    <div class="form-gruop">
+        <label for="active">Aktiv studie inriktning</label>
+        <input type="checkbox" id="active" class="form-control" name="active"></input>
+    </div>
+    <div class="form-gruop">
+        <label for="graduerad">graduerad</label>
+        <input type="checkbox" id="graduerad" class="form-control" name="graduerad"></input>
+    </div>
+    <div class="form-gruop">
+        <label for="checkbox">Betatalat medlemsavgift</label>
+        <input type="checkbox" id="checkbox" class="form-control" name="Betatalat"></input>
+    </div>
+    <input type="submit" class="form-control"  value="OK">
+    {% csrf_token %}
 </form>
-
-
 {% endblock %}

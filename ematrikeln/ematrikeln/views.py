@@ -11,55 +11,20 @@ def index(req):
     return(render(req,'index.html',{'all':allMembers}))
 
 def add(req,state):
-    success = "false"
-    if req.method == 'POST':
-        form = newMember(req.POST)
-        firstname = form['firstname']
-        lastname = form['lastname']
-        address = form['address']
-        city = form['city']
-        postcode = form['postcode']
-        email = form['email']
-        phone = form['phone']
-        hometown = form['homeTown']
-        startYear = 2010
-       # startYear = form['startYear']
-        if form['gymnasium'] == '':
-            print('it twerks')
-            gymnasium = form['gymnasium']
-        else:
-            gymnasium = form['gymnasiumAnnat']
-        if form['homeTown'] != 'Annat':
-            hometown = form['homeTown']
-        else:
-            hometown = form['homeTownAnnat']
-        if form['school'] != 'Annat':
-            school = form['school']
-        else:
-            school = form['schoolAnnat']
-        study = form['study']
-        active = True
-        endYear = None
-        studyLine = StudyLine.objects.get_or_create(school = School.objects.get_or_create(name=school)[0], name = study)
-        study = Study.objects.create(startYear = startYear,graduated = False,active=active,endYear=endYear, studyLine = studyLine[0])
-        member = User.objects.create(homeTown = Town.objects.get_or_create(name=hometown)[0], gymnasium = Gymnasium.objects.get_or_create(name=gymnasium)[0], study=study)
-        member.firstname = firstname
-        member.lastname = lastname
-        member.phone = phone
-        member.adress = address
-        member.city = city
-        member.email = email
-        member.study = study
-        member.postcode = postcode
-        member.save()
-
-        if form.is_valid():
-            success = "true"
-            form = newMember()
+    if state is '':
+        success = 'false'
     else:
-        form = newMember()
+        success = 'true'
+<<<<<<< HEAD
+    schoolList = School.objects.all().extra(order_by=['name'])
+    hometownList = Town.objects.all().extra(order_by=['name'])
+    gymnasiumList = Gymnasium.objects.all().extra(order_by=['name'])
+    return(render(req,'new.html',{'showdialog':success,'gymnasium':gymnasiumList,'schoolList':schoolList,'hometownList':hometownList}))
+=======
+    form = newMember()
     return(render(req,'new.html',{'showdialog':success,'form':form}))
 
+>>>>>>> parent of 691ac10... added hotfix to get rid of error
 def view_member(req,req_id):
     member =  User.objects.get(id=req_id)
     return(render(req,'medlem.html',{'user':member}))
@@ -67,6 +32,8 @@ def delete_member(req,req_id):
     member =  User.objects.get(id= req_id)
     member.delete()
     return redirect('/')
+<<<<<<< HEAD
+=======
 def add_member(req):
     if req.method == 'POST':
         if req.is_valid():
@@ -76,6 +43,7 @@ def add_member(req):
             phone       = req.POST['phonenumber']
             city        = req.POST['city']
             postcode    = req.POST['postcode']
+            epost       = req.POST['email']
             if req.POST['gymnasium'] != 'Annat':
                 gymnasium = req.POST['gymnasium']
             else:
@@ -108,3 +76,4 @@ def add_member(req):
             return HttpResponse(200)
         return HttpResponse(500)
     return HttpResponse(404)
+>>>>>>> parent of 691ac10... added hotfix to get rid of error
