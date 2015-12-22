@@ -1,34 +1,29 @@
 {% extends "base.html" %}
 
 {% block content %}
-{% load bootstrap %}
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
 <script>
 $(document).ready(function() {
-    function otherChosen(id,target){
-        console.log($('#'+id).val())
-        if(!$('#'+id).val()){
-            $('#'+target).removeClass('hidden');
-            $("label[for='"+target+"']").removeClass('hidden');
-        }else{
-            $('#'+target).addClass('hidden');
-            $("label[for='"+target+"']").addClass('hidden');
+    var otherChosen = function(id,target){
+            if($('#'+id).val()==='Annat'){
+                $('#'+target).removeClass('hidden')
+            }else{
+                $('#'+target).addClass('hidden')
+            }
+
+    }
+        if({{showdialog }}){
+            $('#success').modal('show')
         }
+        otherChosen('gymnasium','gymnasiumAnnat')
+        otherChosen('school','schoolAnnat')
+        otherChosen('hometown','hometownAnnat')
 
-    }
-
-    $('#id_gymnasium').change(function(){otherChosen('id_gymnasium','id_gymnasiumAnnat')});
-    $('#id_school').change(function(){otherChosen('id_school','id_schoolAnnat')});
-    $('#id_homeTown').change(function(){otherChosen('id_homeTown','id_homeTownAnnat')});
-    if({{showdialog }}){
-        $('#success').modal('show');
-    }
-    otherChosen('id_gymnasium','id_gymnasiumAnnat');
-    otherChosen('id_school','id_schoolAnnat');
-    otherChosen('id_homeTown','id_homeTownAnnat');
-
-});
+        $('#gymnasium').change(otherChosen('gymnasium','gymnasiumAnnat'));
+        $('#school').change(otherChosen('school','schoolAnnat'))
+        $('#hometown').change(otherChosen('hometown','hometownAnnat'))
+    });
 </script>
 
 
@@ -42,14 +37,78 @@ $(document).ready(function() {
     </div>
 </div>
 
-<form role="form">
-    <legend>Form Title</legend>
-    {% csrf_token %}
-    {{ form|bootstrap }}
+
+
+<form id="newMember" action="/add_member/" method="post">
     <div class="form-group">
-      <button type="submit" class="btn btn-primary">Submit</button>
+        <label for="firstName">Förnamn</label>
+        <input type="TEXT" name="firstName"  class="form-control" id="firstName" placeholder="Förnamn">
     </div>
+    <div class="form-group">
+        <label for="lastName">Efternamn</label>
+        <input type="TEXT" name="lastName"  class="form-control" id="lastName" placeholder="Efternamn">
+    </div>
+    <div class="form-group">
+        <label for="address">Adress</label>
+        <input type="TEXT" name="address" class="form-control" id="address" placeholder="Exempelgata 1 a 2">
+    </div>
+    <div class="form-group">
+        <label for="city">Stad</label>
+        <input type="TEXT" name="city" class="form-control" id="city" placeholder="Exempelstad">
+    </div>
+    <div class="form-group">
+        <label for="postcode">Postkod</label>
+        <input type="NUMBER" name="postcode" class="form-control" id="postcode" placeholder="06660">
+    </div>
+    <div class="form-group">
+        <label for="email">E-post</label>
+        <input type="email" name="email"  class="form-control" id="email" placeholder="Epost">
+    </div>
+    <div class="form-group">
+        <label for="phonenumber">Telefon nummer</label>
+        <input type="NUMBER" name="phonenumber" class="form-control" id="phonenumber" placeholder="040 123456">
+    </div>
+
+    <div class="form-group">
+        <label for="gymnasium">Gymnasium</label>
+        <select form="newMember" id="gymnasium" name="gymnasium"  class="form-control">
+            {% for i  in gymnasium   %}
+            <option> {{ i.name }} </option>
+            {% endfor %}
+            <option> Annat </option>
+            <input type="TEXT" class="form-control hidden" name="gymnasiumAnnat"  id="gymnasiumAnnat" placeholder="Exempel Gymnasium">
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="hometown">Hemstad</label>
+        <select form="newMember" id="hometown" class="form-control" name="hometown" >
+            {% for i  in hometownList  %}
+            <option> {{ i.name }} </option>
+            {% endfor %}
+            <option> Annat </option>
+            <input type="TEXT" class="form-control hidden" id="hometownAnnat" name="hometownAnnat"  placeholder="Exempel hemstad">
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="school">Skola</label>
+        <select form="newMember" id="school" class="form-control" name="school">
+            {% for i  in schoolList  %}
+            <option> {{ i.name }} </option>
+            {% endfor %}
+            <option> Annat </option>
+            <input type="TEXT" class="form-control hidden" id="schoolAnnat" name="schoolAnnat" placeholder="Exempel skola">
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="study">Studieinrikning</label>
+        <input type="TEXT" class="form-control" id="study" name="study"  placeholder="Exempel inrikning">
+    </div>
+    <div class="form-gruop">
+        <label for="checkbox">Betatalat medlemsavgift</label>
+        <input type="checkbox" id="checkbox" class="form-control" name="Betatalat"></input>
+    </div>
+    <input type="submit" class="form-control"  value="OK">
+    {% csrf_token %}
 </form>
-
-
 {% endblock %}
