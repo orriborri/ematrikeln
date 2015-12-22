@@ -39,7 +39,6 @@ INSTALLED_APPS = (
         'django.contrib.staticfiles',
         'ematrikeln',
         'django_nose',
-	'bootstrapform',
         )
 
 MIDDLEWARE_CLASSES = (

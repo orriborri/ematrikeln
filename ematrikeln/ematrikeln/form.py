@@ -1,5 +1,4 @@
 from django import forms
-from ematrikel.models import MedlemsTyp
 
 class medlemForm(forms.Form):
     firstName.form.CharField(max_length = 30)
@@ -15,5 +14,4 @@ class medlemForm(forms.Form):
     study.form.CharField(max_length = 30)
     endYear.form.IntegerForm()
     startYear.form.IntegerForm()
-    medlemstyp.form.ChoiceField(('ordinarieMedlem','Ordinarie Medlem'),('extraMedlem','Extra Medlem')) 
     active.form.BooleanField()

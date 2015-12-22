@@ -11,7 +11,7 @@ urlpatterns = [
         # url(r'^blog/', include('blog.urls')),
 
         url(r'^admin/', include(admin.site.urls)),
-        url(r'^add_member',views.add_member),
+#        url(r'^add_member',views.add_member),
         url(r'^medlem/(\w*?)$', views.view_member),
         url(r'^medlem/delete/(\w*?)$', views.delete_member),
         url(r'^add/(\w*?)$', views.add),
