@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load bootstrap %}
 
 {% block content %}
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
@@ -45,63 +46,5 @@ $(document).ready(function() {
     <div class="form-group">
       <button type="submit" class="btn btn-primary">Submit</button>
     </div>
-
-    <div class="form-group">
-        <label for="gymnasium">Gymnasium</label>
-        <select form="newMember" id="gymnasium" name="gymnasium"  class="form-control">
-            {% for i  in gymnasium   %}
-            <option> {{ i.name }} </option>
-            {% endfor %}
-            <option> Annat </option>
-            <input type="TEXT" class="form-control hidden" name="gymnasiumAnnat"  id="gymnasiumAnnat" placeholder="Exempel Gymnasium">
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="hometown">Hemstad</label>
-        <select form="newMember" id="hometown" class="form-control" name="hometown" >
-            {% for i  in hometownList  %}
-            <option> {{ i.name }} </option>
-            {% endfor %}
-            <option> Annat </option>
-            <input type="TEXT" class="form-control hidden" id="hometownAnnat" name="hometownAnnat"  placeholder="Exempel hemstad">
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="school">Skola</label>
-        <select form="newMember" id="school" class="form-control" name="school">
-            {% for i  in schoolList  %}
-            <option> {{ i.name }} </option>
-            {% endfor %}
-            <option> Annat </option>
-            <input type="TEXT" class="form-control hidden" id="schoolAnnat" name="schoolAnnat" placeholder="Exempel skola">
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label for="study">Studieinrikning</label>
-        <input type="TEXT" class="form-control" id="study" name="study"  placeholder="Exempel inrikning" required>
-    </div>
-    <div class="form-group">
-        <label for="startYear">Börjat studera</label>
-        <input type="TEXT" class="form-control" id="startYear" name="startYear" required>
-    </div>
-    <div class="form-group">
-        <label for="endYear">Blivit klar</label>
-        <input type="TEXT" class="form-control" id="endYear" name="endYear" required>
-    </div>
-    <div class="form-gruop">
-        <label for="active">Aktiv studie inriktning</label>
-        <input type="checkbox" id="active" class="form-control" name="active"></input>
-    </div>
-    <div class="form-gruop">
-        <label for="graduerad">graduerad</label>
-        <input type="checkbox" id="graduerad" class="form-control" name="graduerad"></input>
-    </div>
-    <div class="form-gruop">
-        <label for="checkbox">Betatalat medlemsavgift</label>
-        <input type="checkbox" id="checkbox" class="form-control" name="Betatalat"></input>
-    </div>
-    <input type="submit" class="form-control"  value="OK">
-    {% csrf_token %}
 </form>
 {% endblock %}

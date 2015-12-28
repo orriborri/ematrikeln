@@ -12,11 +12,13 @@ def index(req):
     return(render(req,'index.html',{'all':allMembers}))
 
 def add(req,state):
-    if state is '':
-        success = 'false'
+    success = 'false'
+    if req.method == 'Post':
+       form = newMember(req.Post)
+       if form.is_valid():
+           success  = 'true'
     else:
-        success = 'true'
-    form = newMember()
+        form = newMember()
     return(render(req,'new.html',{'showdialog':success,'form':form}))
 
 def view_member(req,req_id):
