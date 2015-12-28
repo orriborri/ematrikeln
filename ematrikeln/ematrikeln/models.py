@@ -18,11 +18,15 @@ class StudyLine(models.Model):
 class Study(models.Model):
     studyLine = models.ForeignKey(StudyLine)
     startYear = models.IntegerField()
-    endYear = models.IntegerField()
+    endYear = models.IntegerField(null=True)
     graduated = models.BooleanField()
     active = models.BooleanField()
+class medlemsTyp(models.Model):
+    medlemsTypes = (('OrdinareMedlem̈́','Ordinarie Medlem'),('ExtraMedlem', 'Extra Medlem'))
+    type    = models.CharField(max_length=30,choices=medlemsTypes)
+    senior  = models.BooleanField()
 class User(models.Model):
-    type        = models.CharField(max_length=30)
+    type        = models.ForeignKey(medlemsTyp)
     phone       = models.CharField(max_length=20)
     email       = models.EmailField(max_length=30)
     adress      = models.CharField(max_length=30)

@@ -51,11 +51,29 @@
         }
     },
     {
+        "model": "ematrikeln.StudyLine",
+        "pk":"1",
+        "fields":{
+            "name":"Radom linje",
+            "school":1
+        }
+    }, 
+    {
         "model" : "ematrikeln.School",
         "pk" : 1,
         "fields":{
             "name":"Helsingfors Universitet"
         }
+    },
+    {   "model" : "ematrikeln.Study",
+        "pk": 1,
+        "fields":{
+            "studyLine":"1",
+            "startYear":"2014",
+            "graduated":"False",
+            "active":"False" 
+        }
+    
     },
     {
         "model" : "ematrikeln.Town",
