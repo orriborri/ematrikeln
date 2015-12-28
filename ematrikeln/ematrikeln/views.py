@@ -8,6 +8,7 @@ from django.shortcuts import redirect
 
 def index(req):
     allMembers = User.objects.all()
+    print(allMembers);
     return(render(req,'index.html',{'all':allMembers}))
 
 def add(req,state):

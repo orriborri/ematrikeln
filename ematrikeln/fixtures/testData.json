@@ -1,8 +1,17 @@
 [
     {
+        "model":"ematrikeln.medlemsTyp",
+        "pk": 1,
+        "fields":{
+            "type" : "OrdinarieMedlem",
+            "senior" : "False"
+        }
+    },
+    {
         "model" : "ematrikeln.User",
         "pk" : 1,
         "fields":{
+            "type":1,
             "firstName" : "Orre",
             "lastName" : "Orreson",
             "phone" : "040123456",
@@ -11,7 +20,7 @@
             "adress" : "exmpelgata 22",
             "postcode": "06660",
             "email" :"herpderp@herp.derp",
-            "school" : 1,
+            "study" : 1,
             "homeTown": 1,
             "gymnasium": 1
         }

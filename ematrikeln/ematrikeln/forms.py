@@ -3,8 +3,6 @@ from datetime import datetime, time, date
 from ematrikeln.models import *
 
 class newMember(forms.Form):
-
-
     firstname = forms.CharField(max_length=100)
     lastname  = forms.CharField(max_length=100)
     address   = forms.CharField(max_length=100)
@@ -28,7 +26,7 @@ class newMember(forms.Form):
             required=True)
     schoolAnnat = forms.CharField(max_length=100)
     study     = forms.CharField(max_length=50)
-    medlemsTyp = forms.ChoiceField(MedlemsTyp.medlemsTyper)
+    medlemsTyp = forms.ChoiceField(medlemsTyp.medlemsTypes)
     startYear =forms.CharField(widget=forms.Select())
     def __init__(self):
         super(newMember, self).__init__()
