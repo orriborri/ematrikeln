@@ -8,16 +8,16 @@
 $(document).ready(function() {
     function otherChosen(id,target){
         if(!$('#'+id).val()){
-            $('#'+target).removeClass('hidden');
+            $('#'+target).parent().parent().removeClass('hidden');
         }else{
-            $('#'+target).addClass('hidden');
+            $('#'+target).parent().parent().addClass('hidden');
         }
 
     }
 
-    $('#gymnasium').change(function(){otherChosen('gymnasium','gymnasiumAnnat')});
-    $('#school').change(function(){otherChosen('school','schoolAnnat')});
-    $('#hometown').change(function(){otherChosen('hometown','hometownAnnat')});
+    $('#id_gymnasium').change(function(){otherChosen('id_gymnasium','id_gymnasiumAnnat')});
+    $('#id_school').change(function(){otherChosen('id_school','id_schoolAnnat')});
+    $('#id_homeTown').change(function(){otherChosen('id_homeTown','id_homeTownAnnat')});
     if({{showdialog }}){
         $('#success').modal('show');
     }
@@ -39,7 +39,7 @@ $(document).ready(function() {
     </div>
 </div>
 
-<form role="form">
+<form action="/add/" method="Post" >
     <legend>Form Title</legend>
     {% csrf_token %}
     {{ form|bootstrap }}

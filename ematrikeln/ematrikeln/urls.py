@@ -14,7 +14,7 @@ urlpatterns = [
 #        url(r'^add_member',views.add_member),
         url(r'^medlem/(\w*?)$', views.view_member),
         url(r'^medlem/delete/(\w*?)$', views.delete_member),
-        url(r'^add/(\w*?)$', views.add),
+        url(r'^add/$', views.add),
         url(r'^$', views.index)
         ]
 

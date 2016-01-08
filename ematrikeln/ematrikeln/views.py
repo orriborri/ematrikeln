@@ -8,15 +8,14 @@ from django.shortcuts import redirect
 
 def index(req):
     allMembers = User.objects.all()
-    print(allMembers);
     return(render(req,'index.html',{'all':allMembers}))
 
-def add(req,state):
+def add(req):
     success = 'false'
-    if req.method == 'Post':
-       form = newMember(req.Post)
-       if form.is_valid():
-           success  = 'true'
+    if req.method == 'POST':
+        form = newMember(req.POST)
+        if form.is_valid():
+            success  = 'true'
     else:
         form = newMember()
     return(render(req,'new.html',{'showdialog':success,'form':form}))
