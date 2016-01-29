@@ -31,13 +31,16 @@ class newMember(forms.Form):
             required = False,
             )
     schoolAnnat = forms.CharField(max_length=100, required = False)
-    study     = forms.CharField(max_length=50)
-    startYear =forms.CharField(max_length=4)
-    medlemsTyp = forms.ChoiceField([('studerande','studerande'),('äldre medlem','äldre medlem')])
+    study       = forms.CharField(max_length=50)
+    startYear   = forms.IntegerField()
+    endYear     = forms.IntegerField(required = False)
+    #medlemsTyp  = forms.ChoiceField([('studerande','studerande'),('äldre medlem','äldre medlem')])
 
     def  clean(self):
-        cleaned_data = super(newMember, self).clean()
-        msg = "Detta fält är obligatorisk"
+        cleaned_data    = super(newMember, self).clean()
+        startYear       = cleaned_data.get('startYear')
+        endYear         = cleaned_data.get('endYear')
+        msg             = "Detta fält är obligatorisk"
         def validateOthers(choice,other,data,self,msg):
             if not data.get(choice):
                 if not data.get(other):
@@ -45,6 +48,8 @@ class newMember(forms.Form):
         validateOthers('school','schoolAnnat',cleaned_data,self,msg)
         validateOthers('gymnasium','gymnasiumAnnat',cleaned_data,self,msg)
         validateOthers('homeTown','homeTownAnnat',cleaned_data,self,msg)
+        if endYear ==  'None' or startYear < endYe esartYear < endYear:
+            
 #        homeTown = cleaned_data.get('homeTown')
 
 #        if homeTown == "None":
